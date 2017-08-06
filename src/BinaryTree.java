@@ -9,8 +9,11 @@ public class BinaryTree {
 
     }
 
-    public void addValue(int value){
-             this.root.addNode(root,value);
+    public void addValueNonRecursively(int value){
+             this.root.addNodeWithoutRecursion(root,value);
+    }
+    public void addValueRecursively(int key) {
+        this.root.addNodeWithRecursion(root, new Node(key));
     }
 
     public void traverse(){

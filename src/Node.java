@@ -12,51 +12,52 @@ public class Node {
         right = null;
         left = null;
     }
-
- public Node addNode(Node root,int value){
-     System.out.println("root node: "+root.getValue());
-        Node node = new Node(value);
+//non recursive
+ public Node addNodeWithoutRecursion(Node root,int value){
+          Node node = new Node(value);
         if(root==null){
             return node;
         }
         Node parentNode = null;
-     System.out.println("Parent node: "+parentNode);
-        Node currentNode=root;
-        System.out.println("Current node: "+currentNode);
-     System.out.println("To the loop...");
+         Node currentNode=root;
+         //Finding last place
         while(currentNode!=null){
             parentNode=currentNode;
-            System.out.println("Parent node: "+parentNode);
             if(value<currentNode.getValue()){
-                System.out.println("Current "+currentNode.getValue()+" is less than "+value+", moving to the left");
-                currentNode=currentNode.getLeft();
-
+               currentNode=currentNode.getLeft();
             }else{
-                System.out.println("Current "+currentNode.getValue()+" is more than "+value+", moving to the right: ");
                 currentNode=currentNode.getRight();
-
             }
         }
-     System.out.println("Loop Has ended");
         if(value<parentNode.getValue()){
-            System.out.println("Parent is less than "+value+", adding to the left node");
             parentNode.setLeft(node);
         }else{
-            System.out.println("Parent is more than "+value+", adding to the right node");
             parentNode.setRight(node);
         }
      return root;
  }
+// private recursive call
+    public Node addNodeWithRecursion(Node root, Node newNode) {
 
+        if (root == null) {
+            return newNode;
+        } else if (newNode.getValue() > root.getValue()) {
+            root.setRight(addNodeWithRecursion(root.getRight(), newNode));
+        } else if (newNode.getValue() < root.getValue()) {
+            root.setLeft(addNodeWithRecursion(root.getLeft(), newNode));
+        }
+
+        return root;
+    }
 
     public void visitNode (Node root){
-        if (root.left != null){
+        if (root.getLeft() != null){
             visitNode (root.getLeft());
         }
 
         System.out.println(root.getValue());
 
-        if (root.right != null){
+        if (root.getRight() != null){
             visitNode (root.getRight());
         }
     }
