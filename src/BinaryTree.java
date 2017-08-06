@@ -3,21 +3,27 @@
  */
 public class BinaryTree {
 
-    private Node root=new Node(6);
+    private Node root=new Node();
 
     public BinaryTree(){
 
     }
-
+    public BinaryTree(int root){
+    this.root = new Node(root);
+    }
     public void addValueNonRecursively(int value){
              this.root.addNodeWithoutRecursion(root,value);
     }
-    public void addValueRecursively(int key) {
-        this.root.addNodeWithRecursion(root, new Node(key));
+    public void addValueRecursively(int value) {
+        this.root.addNodeWithRecursion(root, value);
     }
 
     public void traverse(){
      this.root.visitNode(root);
+
+    }
+    public boolean searchValue(int value){
+       return this.root.search(value);
 
     }
 
